@@ -1,10 +1,12 @@
-import { defineConfig } from "drizzle-kit";
-
-export default defineConfig({
+// drizzle.config.ts
+export default {
   schema: "./src/db/schema.ts",
   out: "./drizzle",
-  dialect: "sqlite",
+  driver: "pg",
   dbCredentials: {
-    url: "file:./src/db/timekeeper.db",  // ✅ This is the fix
+    connectionString: process.env.DATABASE_URL ?? "",
   },
-});
+  strict: true,
+  verbose: true,
+};
+
